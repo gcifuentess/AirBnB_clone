@@ -14,9 +14,9 @@ class Review(BaseModel):
         check_args = {}
         if kwargs == {}:
             # entered here through Create command from Console
-            self.place_id = City.place_id
-            self.user_id = City.user_id
-            self.text = City.text
+            self.place_id = Review.place_id
+            self.user_id = Review.user_id
+            self.text = Review.text
         else:
             # entered here through Update command from Console
             check_args = kwargs.copy()
