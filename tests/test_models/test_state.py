@@ -163,8 +163,8 @@ class StateTest(unittest.TestCase):
         my_id = str(uuid.uuid4())
         actual_date = datetime.now().isoformat()
         Mod1 = State(id=my_id, created_at=actual_date,
-                    updated_at=actual_date, __class__='State',
-                    test='my_test')
+                     updated_at=actual_date, __class__='State',
+                     test='my_test')
         self.assertTrue(isinstance(Mod1, State))
         self.assertEqual(str, type(Mod1.id))
         self.assertEqual(datetime, type(Mod1.created_at))
