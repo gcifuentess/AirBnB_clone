@@ -12,7 +12,9 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from console import HBNBCommand
-from console import classes
+# from console import classes
+classes = {"BaseModel": BaseModel, "User": User, "City": City, "State": State,
+           "Amenity": Amenity, "Review": Review, "Place": Place}
 
 
 class ConsoleTest(unittest.TestCase):
