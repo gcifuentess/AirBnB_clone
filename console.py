@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-''' Console Module =D '''
+'''Console Module =D to manipulate objects'''
 import cmd
 import sys
 from models import storage
+from models.engine.file_storage import FileStorage
 from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
@@ -30,30 +31,43 @@ class HBNBCommand(cmd.Cmd):
         prompt = '(hbnb) \n'
 
     def do_quit(self, arg):
-        'quit console'
+        '''quit console with quit method'''
         return True
 
     def do_EOF(self, arg):
-        'quit console EOF'
+        '''quit console with EOF method'''
         print()
         return True
 
     def emptyline(self):
-        ''' empty '''
+        ''' empty line pass'''
         pass
 
     def postloop(self):
+        '''postlooop goodbye'''
         Bye = '----------------------------------------\n-----' + \
-                '        Come Back Soon!       -----\n-----     ' + \
-                '  Have a lovely day      -----\n---------------' + \
-                '-------------------------\n'
+            '        Come Back Soon!       -----\n-----     ' + \
+            '  Have a lovely day      -----\n---------------' + \
+            '-------------------------\n'
         print(Bye)
-        # return super().postloop()
+
+    def default(self, line):
+        '''default method to cast functions'''
+        arg_list = line.split('.')
+        if len(arg_list) >= 2:
+            if arg_list[1] == "all()":
+                self.do_all(arg_list[0])
+            elif arg_list[1][:4] == "show":
+                self.do_show(strip_line(arg_list))
+            elif arg_list[1][:7] == "destroy":
+                self.do_destroy(strip_line(arg_list))
+            elif arg_list[1][:6] == "update":
+                self.do_update(strip_line(arg_list))
 
     def do_create(self, arg):
-        "\n<-                    Creates a new instance:                   ->\n\
+        """\n<-                    Creates a new instance:                   ->\n\
 <-    Usage: create <class name>    -    Ex: create BaseModel   ->\n\
-<-                 if success id will be printed                ->\n"
+<-                 if success id will be printed                ->\n"""
 
         class_name = parse(arg)
         if len(class_name) == 0:
@@ -118,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, arg):
-        '''update'''
+        '''update method for classes'''
         line = parse(arg)
         if line == []:
             print("** class name missing **")
@@ -150,5 +164,31 @@ def parse(arg):
     args = shlex.split(arg)
     return args
 
+
+def strip_line(case):
+    '''function to parse the input line'''
+    args = ""
+    list1 = case
+    str_class = list1[0]
+    list2 = list1[1].split("(")
+    str_command = list2[0]
+    #   args = str_command + " "
+    args = args + str_class + " "
+    list3 = list2[1].split(",")
+    str_id = list3[0].strip('" ()')
+    args = args + str_id
+    if len(list3) == 3:
+        is_dict = list3[1].strip()
+        if is_dict[0] == "{":
+            pass
+        else:
+            str_atribute = list3[1].strip('" ')
+            str_value = list3[2].strip('" )')
+            args = args + " " + str_atribute + " "
+            args = args + str_value
+    return(args)
+
+
 if __name__ == '__main__':
+    '''main loop for console'''
     HBNBCommand().cmdloop()
