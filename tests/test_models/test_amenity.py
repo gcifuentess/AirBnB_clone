@@ -4,9 +4,11 @@ import unittest
 from datetime import timedelta  # for isoformat and fromisoformat
 from datetime import datetime  # for strftime
 from datetime import date
+from time import sleep
 import uuid
 from models.amenity import Amenity
 from models.base_model import BaseModel
+from models import storage
 
 
 class AmenityTest(unittest.TestCase):
@@ -67,6 +69,7 @@ class AmenityTest(unittest.TestCase):
         my_model_2 = Amenity()
 
         # 1) Checks if when an instance is updated, created_at != updated_at
+        sleep(0.1)
         my_model_0.save()
         my_model_1.save()
         my_model_2.save()
@@ -76,6 +79,7 @@ class AmenityTest(unittest.TestCase):
         self.assertNotEqual(my_model_2.created_at, my_model_2.updated_at)
 
         # 2) Checks if update date is actual
+        sleep(0.1)
         my_model_0.save()
         my_model_1.save()
         my_model_2.save()
@@ -192,14 +196,13 @@ class AmenityTest(unittest.TestCase):
         self.assertTrue(issubclass(type(my_model_0), BaseModel) and
                         type(my_model_0) != BaseModel)
 
-    def test_8_user_type_args(self):
+    def test_8_amenity_type_args(self):
         '''If object args are of the correct type'''
 
         my_model_0 = Amenity()
-        args_dict = {"name": "hola"}
-        usr_dict = my_model_0.to_dict()
-        usr_dict.update(args_dict)
-        my_model_0 = Amenity(**usr_dict)
-        usr_dict = my_model_0.to_dict()
-        name = usr_dict['name']
-        self.assertTrue(type(name) == str)
+
+        attbs = storage.class_attributes()['Amenity']
+
+        for key, value in attbs.items():
+            attr = getattr(my_model_0, key)
+            self.assertEqual(type(attr), value)

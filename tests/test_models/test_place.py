@@ -4,7 +4,9 @@ import unittest
 from datetime import timedelta  # for isoformat and fromisoformat
 from datetime import datetime  # for strftime
 from datetime import date
+from time import sleep
 import uuid
+from models import storage
 from models.place import Place
 from models.base_model import BaseModel
 
@@ -67,6 +69,7 @@ class PlaceTest(unittest.TestCase):
         my_model_2 = Place()
 
         # 1) Checks if when an instance is updated, created_at != updated_at
+        sleep(0.1)
         my_model_0.save()
         my_model_1.save()
         my_model_2.save()
@@ -76,6 +79,7 @@ class PlaceTest(unittest.TestCase):
         self.assertNotEqual(my_model_2.created_at, my_model_2.updated_at)
 
         # 2) Checks if update date is actual
+        sleep(0.1)
         my_model_0.save()
         my_model_1.save()
         my_model_2.save()
@@ -196,35 +200,9 @@ class PlaceTest(unittest.TestCase):
         '''If object args are of the correct type'''
 
         my_model_0 = Place()
-        args_dict = {"city_id": "ny123", "user_id": "123", "name": "betty",
-                     "description": "test", "number_rooms": "14",
-                     "number_bathrooms": "18", "max_guest": "100",
-                     "price_by_night": "150", "latitude": "1235.8657",
-                     "longitude": "1234.6456",
-                     "amenity_ids": "5yycy"}
-        usr_dict = my_model_0.to_dict()
-        usr_dict.update(args_dict)
-        my_model_0 = Place(**usr_dict)
-        usr_dict = my_model_0.to_dict()
-        city_id = usr_dict['city_id']
-        user_id = usr_dict['user_id']
-        name = usr_dict['name']
-        description = usr_dict['description']
-        number_rooms = usr_dict['number_rooms']
-        number_bathrooms = usr_dict['number_bathrooms']
-        max_guest = usr_dict['max_guest']
-        price_by_night = usr_dict['price_by_night']
-        latitude = usr_dict['latitude']
-        longitude = usr_dict['longitude']
-        amenity_ids = usr_dict['amenity_ids']
-        self.assertTrue(type(city_id) == str)
-        self.assertTrue(type(user_id) == str)
-        self.assertTrue(type(description) == str)
-        self.assertTrue(type(name) == str)
-        self.assertTrue(type(my_model_0.number_rooms) == int)
-        self.assertTrue(type(number_bathrooms) == int)
-        self.assertTrue(type(max_guest) == int)
-        self.assertTrue(type(price_by_night) == int)
-        self.assertTrue(type(latitude) == float)
-        self.assertTrue(type(longitude) == float)
-        self.assertTrue(type(amenity_ids) == list)
+
+        attbs = storage.class_attributes()['Place']
+
+        for key, value in attbs.items():
+            attr = getattr(my_model_0, key)
+            self.assertEqual(type(attr), value)

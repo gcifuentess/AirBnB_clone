@@ -4,7 +4,9 @@ import unittest
 from datetime import timedelta  # for isoformat and fromisoformat
 from datetime import datetime  # for strftime
 from datetime import date
+from time import sleep
 import uuid
+from models import storage
 from models.user import User
 from models.base_model import BaseModel
 
@@ -67,6 +69,7 @@ class UserTest(unittest.TestCase):
         my_model_2 = User()
 
         # 1) Checks if when an instance is updated, created_at != updated_at
+        sleep(0.1)
         my_model_0.save()
         my_model_1.save()
         my_model_2.save()
@@ -76,6 +79,7 @@ class UserTest(unittest.TestCase):
         self.assertNotEqual(my_model_2.created_at, my_model_2.updated_at)
 
         # 2) Checks if update date is actual
+        sleep(0.1)
         my_model_0.save()
         my_model_1.save()
         my_model_2.save()
@@ -197,17 +201,8 @@ class UserTest(unittest.TestCase):
 
         my_model_0 = User()
 
-        args_dict = {"email": "hola@chao.com", "password": "123", "first_name":
-                     "Hola", "last_name": "chao"}
-        usr_dict = my_model_0.to_dict()
-        usr_dict.update(args_dict)
-        my_model_0 = User(**usr_dict)
-        usr_dict = my_model_0.to_dict()
-        email = usr_dict['email']
-        password = usr_dict['password']
-        first_name = usr_dict['first_name']
-        last_name = usr_dict['last_name']
-        self.assertTrue(type(email) == str)
-        self.assertTrue(type(password) == str)
-        self.assertTrue(type(first_name) == str)
-        self.assertTrue(type(last_name) == str)
+        attbs = storage.class_attributes()['User']
+
+        for key, value in attbs.items():
+            attr = getattr(my_model_0, key)
+            self.assertEqual(type(attr), value)
