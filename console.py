@@ -30,12 +30,19 @@ class HBNBCommand(cmd.Cmd):
     else:
         prompt = '(hbnb) \n'
 
+    doc_header = """- List of all commands that you can use - help <command name> -"""
+    ruler = "."
+
     def do_quit(self, arg):
-        '''quit console with quit method'''
+        """\n<-    QUIT METHOD: EXITS THE CONSOLE    ->\n
+            <-              Usage: quit              ->\n
+            <-     if success console will close     ->\n"""
         return True
 
     def do_EOF(self, arg):
-        '''quit console with EOF method'''
+        """\n<-    EOF METHOD: EXITS THE CONSOLE    ->\n
+            <-         Usage: EOF - CTRL + D        ->\n
+            <-     if success console will close    ->\n"""
         print()
         return True
 
@@ -57,6 +64,8 @@ class HBNBCommand(cmd.Cmd):
         if len(arg_list) >= 2:
             if arg_list[1] == "all()":
                 self.do_all(arg_list[0])
+            elif arg_list[1] == "count()":
+                self.do_count(arg_list[0])
             elif arg_list[1][:4] == "show":
                 self.do_show(strip_line(arg_list))
             elif arg_list[1][:7] == "destroy":
@@ -65,9 +74,9 @@ class HBNBCommand(cmd.Cmd):
                 self.do_update(strip_line(arg_list))
 
     def do_create(self, arg):
-        """\n<-                    Creates a new instance:                   ->\n\
-<-    Usage: create <class name>    -    Ex: create BaseModel   ->\n\
-<-                 if success id will be printed                ->\n"""
+        """\n<-                  Creates a new instance:                ->\n
+            <-   Usage: create <class name>   -   Ex: create BaseModel  ->\n
+            <-               if success id will be printed              ->\n"""
 
         class_name = parse(arg)
         if len(class_name) == 0:
@@ -81,7 +90,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, arg):
-        '''shows the representation of an object'''
+        """
+            <-          Shows an specified object:           ->
+            <-         Usage: show <class name> <id>         ->
+            <-       Ex: show BaseModel 1234-1234-1234       ->
+            <-       if success object will be printed       ->\n"""
         line = parse(arg)
         if line == []:
             print("** class name missing **")
@@ -99,7 +112,12 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_destroy(self, arg):
-        '''remove'''
+        """
+            <-         Destroy an specified object:          ->
+            <-       Usage: destroy <class name> <id>        ->
+            <-     Ex: destroy BaseModel 1234-1234-1234      ->
+            <-       if success object will be deleted       ->
+            <-                No output printed              ->\n"""
         line = parse(arg)
         if line == []:
             print("** class name missing **")
@@ -116,8 +134,11 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_all(self, arg):
-        '''Prints all string representation of all instances
-        based or not on the class name.'''
+        """
+            <-   Prints all string representation of instances:   ->
+            <-            Usage: all <class name> - all           ->
+            <-              Ex: all BaseModel or  all.            ->
+            <-         if success object will be deleted          ->\n"""
         line = parse(arg)
         all = storage.all()
         if line == []:
@@ -132,7 +153,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, arg):
-        '''update method for classes'''
+        """
+            <-           Update an specified object:            ->
+            <-        Usage: update <class name> <id>           ->
+            <-    Ex: update User 1234-1234-1234 name "hbnb"    ->
+            <-        if success object will be updated         ->
+            <-                No output printed                 ->\n"""
         line = parse(arg)
         if line == []:
             print("** class name missing **")
@@ -158,6 +184,18 @@ class HBNBCommand(cmd.Cmd):
                     new_obj = classes[line[0]](**dict_obj)
                     new_obj.save()
 
+    def do_count(self, arg):
+        """
+            <-   Counts all string representation of instances:   ->
+            <-            Usage: count <class name>               ->
+            <-               Ex: count BaseModel                  ->
+            <-  if success number of instances will be printed    ->\n"""
+        all_objs = storage.all()
+        counter = 0
+        for obj in all_objs:
+            if arg == obj.split(".")[0]:
+                counter += 1
+        print(counter)
 
 def parse(arg):
     '''parse line from input'''
@@ -172,7 +210,6 @@ def strip_line(case):
     str_class = list1[0]
     list2 = list1[1].split("(")
     str_command = list2[0]
-    #   args = str_command + " "
     args = args + str_class + " "
     list3 = list2[1].split(",")
     str_id = list3[0].strip('" ()')
