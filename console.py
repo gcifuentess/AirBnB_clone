@@ -20,6 +20,8 @@ classes = {"BaseModel": BaseModel, "User": User, "City": City, "State": State,
 class HBNBCommand(cmd.Cmd):
     '''Command line interpreter class'''
     file = None
+    doc_header = """- All commands that you can use - help <command name> -"""
+    ruler = "."
 
     if sys.stdin.isatty():
         intro = '----------------------------------------\n-----' + \
@@ -29,9 +31,6 @@ class HBNBCommand(cmd.Cmd):
         prompt = '(hbnb) '
     else:
         prompt = '(hbnb) \n'
-
-    doc_header = """- List of all commands that you can use - help <command name> -"""
-    ruler = "."
 
     def do_quit(self, arg):
         """\n<-    QUIT METHOD: EXITS THE CONSOLE    ->\n
@@ -196,6 +195,7 @@ class HBNBCommand(cmd.Cmd):
             if arg == obj.split(".")[0]:
                 counter += 1
         print(counter)
+
 
 def parse(arg):
     '''parse line from input'''
