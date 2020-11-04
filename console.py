@@ -33,20 +33,22 @@ class HBNBCommand(cmd.Cmd):
         prompt = '(hbnb) \n'
 
     def do_quit(self, arg):
-        """\n<-    QUIT METHOD: EXITS THE CONSOLE    ->\n
-            <-              Usage: quit              ->\n
+        """
+            <-    QUIT METHOD: EXITS THE CONSOLE     ->
+            <-              Usage: quit              ->
             <-     if success console will close     ->\n"""
         return True
 
     def do_EOF(self, arg):
-        """\n<-    EOF METHOD: EXITS THE CONSOLE    ->\n
-            <-         Usage: EOF - CTRL + D        ->\n
+        """
+            <-    EOF METHOD: EXITS THE CONSOLE     ->
+            <-         Usage: EOF - CTRL + D        ->
             <-     if success console will close    ->\n"""
         print()
         return True
 
     def emptyline(self):
-        ''' empty line pass'''
+        '''empty line pass'''
         pass
 
     def postloop(self):
@@ -75,9 +77,10 @@ class HBNBCommand(cmd.Cmd):
                     self.do_update(case)
 
     def do_create(self, arg):
-        """\n<-                  Creates a new instance:                ->\n
-            <-   Usage: create <class name>   -   Ex: create BaseModel  ->\n
-            <-               if success id will be printed              ->\n"""
+        """
+            <-                 Creates a new instance:                 ->
+            <-  Usage: create <class name>   -   Ex: create BaseModel  ->
+            <-              if success id will be printed              ->\n"""
 
         class_name = parse(arg)
         if len(class_name) == 0:
@@ -138,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
         """
             <-   Prints all string representation of instances:   ->
             <-            Usage: all <class name> - all           ->
-            <-              Ex: all BaseModel or  all.            ->
+            <-              Ex: all BaseModel or all              ->
             <-         if success object will be deleted          ->\n"""
         line = parse(arg)
         all = storage.all()
@@ -155,11 +158,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-            <-           Update an specified object:            ->
-            <-        Usage: update <class name> <id>           ->
-            <-    Ex: update User 1234-1234-1234 name "hbnb"    ->
-            <-        if success object will be updated         ->
-            <-                No output printed                 ->\n"""
+            <-              Update an specified object             ->
+            <- Usage: update <class name> <id> <attribute> <value> ->
+            <-     Ex: update User 1234-1234-1234 name "hbnb"      ->
+            <-         if success object will be updated           ->
+            <-                 No output printed                   ->\n"""
         line = parse(arg)
         if line == []:
             print("** class name missing **")
