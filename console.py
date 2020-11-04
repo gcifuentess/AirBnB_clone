@@ -216,7 +216,7 @@ def strip_line(case):
     list3 = list2[1].split(",")
     str_id = list3[0].strip('" ()')
     args = args + str_id
-    if len(list3) >= 3:
+    if len(list3) >= 2:
         is_dict = list3[1].strip()
         if is_dict[0] == "{":
             list4 = list3[1:]
@@ -230,7 +230,6 @@ def strip_line(case):
                 arg_str = args + " " + key + " " + value
                 dict_args.append(arg_str)
                 i += 1
-                print(dict_args)
             return (dict_args)
         else:
             str_atribute = list3[1].strip('" ')
