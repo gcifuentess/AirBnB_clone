@@ -197,6 +197,11 @@ class UserTest(unittest.TestCase):
 
         my_model_0 = User()
 
+        args_dict = {"email": "hola@chao.com", "password": "123", "first_name":
+                     "Hola", "last_name": "chao"}
+        usr_dict = my_model_0.to_dict()
+        usr_dict.update(args_dict)
+        my_model_0 = User(**usr_dict)
         usr_dict = my_model_0.to_dict()
         email = usr_dict['email']
         password = usr_dict['password']

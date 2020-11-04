@@ -196,7 +196,10 @@ class AmenityTest(unittest.TestCase):
         '''If object args are of the correct type'''
 
         my_model_0 = Amenity()
-
+        args_dict = {"name": "hola"}
+        usr_dict = my_model_0.to_dict()
+        usr_dict.update(args_dict)
+        my_model_0 = Amenity(**usr_dict)
         usr_dict = my_model_0.to_dict()
         name = usr_dict['name']
         self.assertTrue(type(name) == str)

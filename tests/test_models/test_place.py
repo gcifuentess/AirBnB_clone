@@ -177,8 +177,8 @@ class PlaceTest(unittest.TestCase):
         self.assertTrue('test' in Mod1.__dict__)
         self.assertTrue('my_test' in Mod1.__dict__.values())
 
-    def test_6_User_class(self):
-        '''If object is correctly a User instance'''
+    def test_6_Place_class(self):
+        '''If object is correctly a Place instance'''
 
         my_model_0 = Place()
 
@@ -192,11 +192,19 @@ class PlaceTest(unittest.TestCase):
         self.assertTrue(issubclass(type(my_model_0), BaseModel) and
                         type(my_model_0) != BaseModel)
 
-    def test_8_user_type_args(self):
+    def test_8_Place_type_args(self):
         '''If object args are of the correct type'''
 
         my_model_0 = Place()
-
+        args_dict = {"city_id": "ny123", "user_id": "123", "name": "betty",
+                     "description": "test", "number_rooms": "14",
+                     "number_bathrooms": "18", "max_guest": "100",
+                     "price_by_night": "150", "latitude": "1235.8657",
+                     "longitude": "1234.6456",
+                     "amenity_ids": "5yycy"}
+        usr_dict = my_model_0.to_dict()
+        usr_dict.update(args_dict)
+        my_model_0 = Place(**usr_dict)
         usr_dict = my_model_0.to_dict()
         city_id = usr_dict['city_id']
         user_id = usr_dict['user_id']
@@ -213,7 +221,7 @@ class PlaceTest(unittest.TestCase):
         self.assertTrue(type(user_id) == str)
         self.assertTrue(type(description) == str)
         self.assertTrue(type(name) == str)
-        self.assertTrue(type(number_rooms) == int)
+        self.assertTrue(type(my_model_0.number_rooms) == int)
         self.assertTrue(type(number_bathrooms) == int)
         self.assertTrue(type(max_guest) == int)
         self.assertTrue(type(price_by_night) == int)

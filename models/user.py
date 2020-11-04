@@ -12,11 +12,4 @@ class User(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """initializes user"""
-        check_args = {}
-        if kwargs == {}:
-            pass
-        else:
-            # entered here through Update command from Console
-            check_args = kwargs.copy()
-
-        super(User, self).__init__(*args, **check_args)
+        super(User, self).__init__(*args, **kwargs)

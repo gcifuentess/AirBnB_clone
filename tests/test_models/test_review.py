@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""City Class Test Module"""
+"""Review Class Test Module"""
 import unittest
 from datetime import timedelta  # for isoformat and fromisoformat
 from datetime import datetime  # for strftime
@@ -9,8 +9,8 @@ from models.review import Review
 from models.base_model import BaseModel
 
 
-class CityTest(unittest.TestCase):
-    '''Class to test the City Class'''
+class ReviewTest(unittest.TestCase):
+    '''Class to test the Review Class'''
 
     def test_00_id(self):
         '''If the id of the an instance is correct'''
@@ -177,8 +177,8 @@ class CityTest(unittest.TestCase):
         self.assertTrue('test' in Mod1.__dict__)
         self.assertTrue('my_test' in Mod1.__dict__.values())
 
-    def test_6_User_class(self):
-        '''If object is correctly a User instance'''
+    def test_6_Review_class(self):
+        '''If object is correctly a review instance'''
 
         my_model_0 = Review()
 
@@ -192,11 +192,15 @@ class CityTest(unittest.TestCase):
         self.assertTrue(issubclass(type(my_model_0), BaseModel) and
                         type(my_model_0) != BaseModel)
 
-    def test_8_user_type_args(self):
+    def test_8_review_type_args(self):
         '''If object args are of the correct type'''
 
         my_model_0 = Review()
-
+        args_dict = {"place_id": "425454sd", "user_id": "useridtest",
+                     "text": "text_test"}
+        usr_dict = my_model_0.to_dict()
+        usr_dict.update(args_dict)
+        my_model_0 = Review(**usr_dict)
         usr_dict = my_model_0.to_dict()
         place_id = usr_dict['place_id']
         user_id = usr_dict['user_id']

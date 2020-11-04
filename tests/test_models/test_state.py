@@ -177,8 +177,8 @@ class StateTest(unittest.TestCase):
         self.assertTrue('test' in Mod1.__dict__)
         self.assertTrue('my_test' in Mod1.__dict__.values())
 
-    def test_6_User_class(self):
-        '''If object is correctly a User instance'''
+    def test_6_State_class(self):
+        '''If object is correctly a State instance'''
 
         my_model_0 = State()
 
@@ -192,11 +192,14 @@ class StateTest(unittest.TestCase):
         self.assertTrue(issubclass(type(my_model_0), BaseModel) and
                         type(my_model_0) != BaseModel)
 
-    def test_8_user_type_args(self):
+    def test_8_state_type_args(self):
         '''If object args are of the correct type'''
 
         my_model_0 = State()
-
+        args_dict = {"name": "hola"}
+        usr_dict = my_model_0.to_dict()
+        usr_dict.update(args_dict)
+        my_model_0 = State(**usr_dict)
         usr_dict = my_model_0.to_dict()
         name = usr_dict['name']
         self.assertTrue(type(name) == str)

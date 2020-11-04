@@ -177,8 +177,8 @@ class CityTest(unittest.TestCase):
         self.assertTrue('test' in Mod1.__dict__)
         self.assertTrue('my_test' in Mod1.__dict__.values())
 
-    def test_6_User_class(self):
-        '''If object is correctly a User instance'''
+    def test_6_City_class(self):
+        '''If object is correctly a City instance'''
 
         my_model_0 = City()
 
@@ -196,7 +196,10 @@ class CityTest(unittest.TestCase):
         '''If object args are of the correct type'''
 
         my_model_0 = City()
-
+        args_dict = {"name": "425454sd", "state_id": "useridtest"}
+        usr_dict = my_model_0.to_dict()
+        usr_dict.update(args_dict)
+        my_model_0 = City(**usr_dict)
         usr_dict = my_model_0.to_dict()
         name = usr_dict['name']
         state_id = usr_dict['state_id']
