@@ -70,7 +70,9 @@ class HBNBCommand(cmd.Cmd):
             elif arg_list[1][:7] == "destroy":
                 self.do_destroy(strip_line(arg_list))
             elif arg_list[1][:6] == "update":
-                self.do_update(strip_line(arg_list))
+                args = strip_line(arg_list)
+                for case in args:
+                    self.do_update(case)
 
     def do_create(self, arg):
         """\n<-                  Creates a new instance:                ->\n
@@ -214,10 +216,22 @@ def strip_line(case):
     list3 = list2[1].split(",")
     str_id = list3[0].strip('" ()')
     args = args + str_id
-    if len(list3) == 3:
+    if len(list3) >= 3:
         is_dict = list3[1].strip()
         if is_dict[0] == "{":
-            pass
+            list4 = list3[1:]
+            dict_args = []
+            i = 0
+            for stat in list4:
+                arg_str = ""
+                arg = stat.split(":")
+                key = arg[0].strip(' \" \'{')
+                value = arg[1].strip(' \"})\'')
+                arg_str = args + " " + key + " " + value
+                dict_args.append(arg_str)
+                i += 1
+                print(dict_args)
+            return (dict_args)
         else:
             str_atribute = list3[1].strip('" ')
             str_value = list3[2].strip('" )')
