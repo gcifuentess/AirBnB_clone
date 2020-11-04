@@ -29,20 +29,20 @@ class BaseModel:
                     updated = datetime.strptime(kwargs['updated_at'],
                                                 date_format)
                     self.updated_at = updated
-                elif key == 'number_rooms':
-                    self.__dict__[key] = int(kwargs['number_rooms'])
-                elif key == 'number_bathrooms':
-                    self.__dict__[key] = int(kwargs['number_bathrooms'])
-                elif key == 'max_guest':
-                    self.__dict__[key] = int(kwargs['max_guest'])
-                elif key == 'price_by_night':
-                    self.__dict__[key] = int(kwargs['price_by_night'])
-                elif key == 'latitude':
-                    self.__dict__[key] = float(kwargs['latitude'])
-                elif key == 'longitude':
-                    self.__dict__[key] = float(kwargs['longitude'])
-                elif key == 'amenity_ids':
-                    self.__dict__[key] = list(kwargs['amenity_ids'])
+                # elif key == 'number_rooms':
+                #    self.__dict__[key] = int(kwargs['number_rooms'])
+                # elif key == 'number_bathrooms':
+                #    self.__dict__[key] = int(kwargs['number_bathrooms'])
+                # elif key == 'max_guest':
+                #    self.__dict__[key] = int(kwargs['max_guest'])
+                # elif key == 'price_by_night':
+                #    self.__dict__[key] = int(kwargs['price_by_night'])
+                # elif key == 'latitude':
+                #    self.__dict__[key] = float(kwargs['latitude'])
+                # elif key == 'longitude':
+                #    self.__dict__[key] = float(kwargs['longitude'])
+                # elif key == 'amenity_ids':
+                #    self.__dict__[key] = list(kwargs['amenity_ids'])
                 else:
                     if key != '__class__':
                         self.__dict__[key] = value
