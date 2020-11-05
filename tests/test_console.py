@@ -29,7 +29,7 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help show")
             str_test = f.getvalue().rstrip()
-        str_exp = HBNBCommand.do_show.__doc__
+        str_exp = HBNBCommand.do_show.__doc__[:-1]
         self.assertEqual(str_test, str_exp)
 
     def test_01_create(self):

@@ -44,7 +44,6 @@ class HBNBCommand(cmd.Cmd):
             <-    EOF METHOD: EXITS THE CONSOLE     ->
             <-         Usage: EOF - CTRL + D        ->
             <-     if success console will close    ->\n"""
-        print()
         return True
 
     def emptyline(self):
@@ -53,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
 
     def postloop(self):
         '''postlooop goodbye'''
-        Bye = '----------------------------------------\n-----' + \
+        Bye = '\n----------------------------------------\n-----' + \
             '        Come Back Soon!       -----\n-----     ' + \
             '  Have a lovely day      -----\n---------------' + \
             '-------------------------\n'
@@ -75,6 +74,8 @@ class HBNBCommand(cmd.Cmd):
                 args = strip_line(arg_list)
                 for case in args:
                     self.do_update(case)
+        else:
+            self.stdout.write('*** Unknown syntax: %s\n' % line)
 
     def do_create(self, arg):
         """
