@@ -2,7 +2,7 @@
 """File Storage Class Test Module"""
 import unittest
 import json
-from models import storage
+from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
 
@@ -11,7 +11,9 @@ class FileStorageTest(unittest.TestCase):
 
     def test_00_all_method(self):
         '''checks if class method all returns a dict'''
-        all_objs = storage.all()
+        my_obj = FileStorage()
+        my_obj.reload()
+        all_objs = my_obj.all()
         self.assertEqual(type(all_objs), dict)
         # self.assertEqual(all_objs, {})
 
@@ -20,7 +22,9 @@ class FileStorageTest(unittest.TestCase):
         my_model = BaseModel()
         my_model.name = "test_01"
         my_model.my_number = 1
-        all_objs = storage.all()
+        my_obj = FileStorage()
+        my_obj.reload()
+        all_objs = my_obj.all()
 
         # check if __objects is not empty
         self.assertNotEqual(all_objs, {})
@@ -50,8 +54,9 @@ class FileStorageTest(unittest.TestCase):
 
         # this test depends on test_02_serialization
         # the json file must be present in the directory
-        storage.reload()  # here happens the deserialization
-        all_objs = storage.all()
+        my_obj = FileStorage()
+        my_obj.reload()  # here happens the deserialization
+        all_objs = my_obj.all()
         test_obj = list(all_objs.values())[0]
         my_key = str(type(test_obj).__name__) + "." + str(test_obj.id)
 
