@@ -21,7 +21,6 @@ class HBNBCommand(cmd.Cmd):
     '''Command line interpreter class'''
     file = None
 
-
     if sys.stdin.isatty():
         intro = '----------------------------------------\n-----' + \
                 ' Welcome to your HBNB Console -----\n-----     ' + \
