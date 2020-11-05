@@ -1,4 +1,4 @@
-![hbnb](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20201104%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20201104T225925Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=ad82cad20b120cd27fcec7762e6f7252b8c9487608218756e499e19bc5dafdc6)
+![hbnb](https://i.ibb.co/fG97cHQ/Hbnb.png)
 -
 # AirBnB clone :hotel:
 
@@ -35,7 +35,7 @@ This abstraction will also allow you to change the type of storage easily withou
 
 The console will be a tool to validate this storage engine
 
-![1st](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20201104%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20201104T225925Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=0745874b4c3e20275e4cfa7d24201ac6c8ce791d35bafc4d20006e94b1ca383a)
+![1st](https://i.ibb.co/fG97cHQ/Hbnb.png)
 ___
 ### Execution Modes:
 
@@ -83,13 +83,22 @@ $
 ### Examples:
 
 - Intro:
+
 ![INTRO](https://i.ibb.co/Z2rV1Pq/Intro-consola.jpg)
+
 - help:
+
 ![HELP](https://i.ibb.co/f1Mfm6s/help-console.jpg)
+
 - create <classname>:
+
 ![CREATE](https://i.ibb.co/zJyY0Fx/create-console.jpg)
+
 - show <classname> <id>:
+
 ![SHOW](https://i.ibb.co/4KbmQ94/show-console.jpg)
+
+___
 
 AUTHORS:
 
