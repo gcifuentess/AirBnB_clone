@@ -20,8 +20,7 @@ classes = {"BaseModel": BaseModel, "User": User, "City": City, "State": State,
 class HBNBCommand(cmd.Cmd):
     '''Command line interpreter class'''
     file = None
-    doc_header = """- All commands that you can use - help <command name> -"""
-    ruler = "."
+
 
     if sys.stdin.isatty():
         intro = '----------------------------------------\n-----' + \
