@@ -70,8 +70,11 @@ class HBNBCommand(cmd.Cmd):
                 self.do_destroy(strip_line(arg_list))
             elif arg_list[1][:6] == "update":
                 args = strip_line(arg_list)
-                for case in args:
-                    self.do_update(case)
+                if type(args) is list:
+                    for case in args:
+                        self.do_update(case)
+                else:
+                    self.do_update(args)
         else:
             self.stdout.write('*** Unknown syntax: %s\n' % line)
 
