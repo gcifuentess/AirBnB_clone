@@ -83,12 +83,21 @@ class BaseModelTest(unittest.TestCase):
         my_model_1.save()
         my_model_2.save()
 
+        sleep(0.1)
         actual_date = datetime.now()
         time_spread = timedelta(seconds=1)
 
         self.assertTrue(actual_date - my_model_0.updated_at < time_spread)
         self.assertTrue(actual_date - my_model_1.updated_at < time_spread)
         self.assertTrue(actual_date - my_model_2.updated_at < time_spread)
+
+        b1 = BaseModel()
+        crtime = b1.created_at
+        uptime = b1.updated_at
+        sleep(0.1)
+        b1.save()
+        self.assertTrue(crtime == b1.created_at)
+        self.assertFalse(uptime == b1.updated_at)
 
     def test_3_str(self):
         '''If str method work as expected'''
