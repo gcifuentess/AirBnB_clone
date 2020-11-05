@@ -69,6 +69,7 @@ class BaseModelTest(unittest.TestCase):
         sleep(0.1)
         b1.save()
         self.assertTrue(crtime == b1.created_at)
+        self.assertFalse(uptime == crtime)
         self.assertFalse(uptime == b1.updated_at)
 
     def test_3_str(self):
