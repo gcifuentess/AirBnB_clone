@@ -35,7 +35,7 @@ This abstraction will also allow you to change the type of storage easily withou
 
 The console will be a tool to validate this storage engine
 
-![1st](https://i.ibb.co/fG97cHQ/Hbnb.png)
+![1st](https://i.ibb.co/5hLdhXT/proyect-layout.png)
 ___
 ### Execution Modes:
 
@@ -100,7 +100,7 @@ $
 
 ___
 
-AUTHORS:
+**AUTHORS:**
 
 Cifuentes, Gabriel - [Twitter](https://twitter.com/_gcifuentess_)
 
