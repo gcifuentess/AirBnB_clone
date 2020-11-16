@@ -1,0 +1,18 @@
+footer {
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 0;
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    border-top: 1px solid #CCCCCC;
+    background-color: white;
+}
+
+footer .footer_text {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
